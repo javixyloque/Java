@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="Librerias/codemodel.jar"/>
+	<classpathentry kind="lib" path="Librerias/dtd-parser.jar"/>
+	<classpathentry kind="lib" path="Librerias/FastInfoset.jar"/>
+	<classpathentry kind="lib" path="Librerias/istack-commons-runtime.jar"/>
+	<classpathentry kind="lib" path="Librerias/istack-commons-tools.jar"/>
+	<classpathentry kind="lib" path="Librerias/javax.activation-api.jar"/>
+	<classpathentry kind="lib" path="Librerias/jaxb-api.jar"/>
+	<classpathentry kind="lib" path="Librerias/jaxb-jxc.jar"/>
+	<classpathentry kind="lib" path="Librerias/jaxb-runtime.jar"/>
+	<classpathentry kind="lib" path="Librerias/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="Librerias/relaxng-datatype.jar"/>
+	<classpathentry kind="lib" path="Librerias/rngom.jar"/>
+	<classpathentry kind="lib" path="Librerias/stax-ex.jar"/>
+	<classpathentry kind="lib" path="Librerias/txw2.jar"/>
+	<classpathentry kind="lib" path="Librerias/xsom.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
