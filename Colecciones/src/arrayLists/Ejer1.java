@@ -25,5 +25,7 @@ public class Ejer1 {
 			System.out.println(i.next());
 		}
 		
+		System.out.println("Hola mundo");
+		
 	}
 }
