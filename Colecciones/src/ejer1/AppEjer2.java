@@ -59,7 +59,7 @@ public class AppEjer2 {
 		for (Socio s: socios) {
 			System.out.println(s.toString());
 		}
-		System.out.println("resubido");
+		System.out.println("subido");
 		String resp3;
 		System.out.println("Quiere eliminar algún socio? (s/n)");
 		resp3 = sc.next();
