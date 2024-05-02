@@ -18,6 +18,11 @@ public class Ejer1 {
 		// SE PUEDE IMPRIMIR EL ARRAYLIST, PERO QUEDA  FEUCHO	//
 		System.out.println(coches);
 		System.out.println("*".repeat(60));
+		for (String coche: coches) {
+			System.out.println("> "+coche);
+		}
+		System.out.println(coches);
+		System.out.println("*".repeat(60));
 		
 //		ITERADOR PARA RECORRER EL ARRAY	//
 		Iterator<String> i  = coches.iterator();

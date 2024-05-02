@@ -1,5 +1,6 @@
 package ejer1;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 
@@ -18,5 +19,7 @@ public class ComparaNombres implements Comparator <Socio> {
 			return 1;
 		}
 	}
+
+	
 
 }
