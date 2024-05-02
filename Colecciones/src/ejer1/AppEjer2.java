@@ -44,19 +44,22 @@ public class AppEjer2 {
 		
 		// METODO PARA ORDENAR EL ARRAYLIST //
 		
+		//METODO PARA ORDENAR POR NOMBRES CON LA CLASE COMPARANOMBRES
 		ComparaNombres c = new ComparaNombres();
 		Collections.sort(socios, c);
 		
 		System.out.println(socios);
 		
 		Collections.sort(socios);
-		// METODO PARA ORDENAR EL ARRAYLIST POR EL PARÁMETRO QUE QUERAMOS //
+		// METODO PARA ORDENAR EL ARRAYLIST POR EL MÉTODO QUE QUERAMOS
+		//	EL COMPARETO QUE USA ES EL DE LA CLASE SOCIO
 		socios.sort((s1, s2) -> s1.compareTo(s2));
 		
 		System.out.println(socios);
 		for (Socio s: socios) {
 			System.out.println(s.toString());
 		}
+		System.out.println("resubido");
 		String resp3;
 		System.out.println("Quiere eliminar algún socio? (s/n)");
 		resp3 = sc.next();
