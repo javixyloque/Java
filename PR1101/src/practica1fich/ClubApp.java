@@ -26,6 +26,7 @@ public class ClubApp {
 			}
 			choice = Dialogos.pedirOpcion("Escoja su siguiente opción", "Registro y listado de socios", opciones);
 		}
+		System.out.println("Hola mundo");
 	}
 	
 	//	METODO PARA REGISTRAR UN SOCIO Y GUARDARLO EN SOCIOS.DAT	//
