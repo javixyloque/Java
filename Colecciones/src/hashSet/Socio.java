@@ -1,4 +1,4 @@
-package ejer1;
+package hashSet;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +21,10 @@ public class Socio implements Comparable{
 	public int edad() {
 		return (int) this.fechaNac.until(LocalDate.now(),ChronoUnit.YEARS);
 	}
+	@Override
+	public int hashCode() {
+		return this.id;
+	}
 
 	@Override
 	public int compareTo (Object o) {
@@ -41,19 +45,7 @@ public class Socio implements Comparable{
 	public String toString() {
 		return "Socio [id=" + id + ", nombre=" + nombre + ", fechaNac=" + fechaNac + "]";
 	}
-	public boolean equals (Socio s1, Socio s2) {
-		if (s1.getId()==s2.getId()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
-	@Override
-	public int hashCode() {
-		return this.id;
-		
-	}
 		
 	//  GETTERS Y SETTERS (NO HACEN FALTA)	//
 	
@@ -84,3 +76,4 @@ public class Socio implements Comparable{
 	
 
 }
+
