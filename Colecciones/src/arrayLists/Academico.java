@@ -27,6 +27,7 @@ public class Academico {
 		return aIngreso;
 	}
 
+	
 	public void setaIngreso(int aIngreso) {
 		this.aIngreso = aIngreso;
 	}
