@@ -15,6 +15,7 @@ public class Academico {
 		return "Academico [nombre=" + nombre + ", aIngreso=" + aIngreso + "]";
 	}
 
+	
 	public String getNombre() {
 		return nombre;
 	}

@@ -19,6 +19,7 @@ public class PrincipalAcademico {
 			mapa.put(letra, a);
 		}
 
+		
 		System.out.println(mapa);
 		if (mapa.containsValue(a)) {
 			return true;
