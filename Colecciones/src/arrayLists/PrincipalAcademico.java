@@ -53,26 +53,36 @@ public class PrincipalAcademico {
 			return false;
 		}
 		
-		
 	}
+	
 	
 	static void mostrarDatos(HashMap<Character, Academico> mapa) {
 
 		ArrayList<Academico> objetos = new ArrayList();
-		HashMap<Character, Academico> ordenados = new HashMap();
-		Collections.sort(objetos);
+		
 		
 		for (Academico a: mapa.values()) {
 			objetos.add(a);
 		}
-		for (Academico ac : objetos) {
-			Character key;
-			if (mapa.containsValue(ac)) {
-				
-			}
-			
-		}
+		
+		objetos.sort((ob1, ob2) -> ob1.compareTo(ob2));
+		
+		System.out.println(objetos);
+		
+		System.out.println("Vamos a verlos ordenados por nombre");
+		// BUCLE RECORRE OBJETOS	//
+		for (Academico a : objetos) {
+			mapa.forEach((key, value) -> {
+				if (value.equals(a)) {
+					System.out.println("Key: "+key+" Value: "+value);
+					
+				}
+			});
+		} 
+		
+		
 		// Ordenados por letra //
+		System.out.println("Ordenados por letra del asiento");
 		System.out.println(mapa);
 		
 		

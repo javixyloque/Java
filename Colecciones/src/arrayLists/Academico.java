@@ -45,5 +45,13 @@ public class Academico implements Comparable{
 			return 1;
 		}
 	}
+	@Override
+	public boolean equals (Object obj) {
+		if (this.nombre.equals(((Academico) obj).getNombre())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }
