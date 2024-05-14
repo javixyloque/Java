@@ -18,16 +18,18 @@ public class PrincipalAcademico {
 		// TODO Auto-generated method stub
 		
 		Scanner sc = new Scanner (System.in);
-		String [] respuestas =  {"Añadir académico", "Crear archivo y listarlos", "Eliminar académico"};
+		String [] respuestas =  {"Añadir académico", "Listar academicos por orden de letra", "Listar academico por orden de nombre", "Eliminar académico", "Salir"};
+		String [] visualizar = {"Orden de nombre", "Orden de letra", "Orden "};
 		char letra;
 		String nombre; 
 		int aIngreso;
 		char respuesta;
 		HashMap<Character, Academico> mapa = new HashMap<Character, Academico>();
-		Boolean continuar = true;
 		
-		while (continuar) {
+		
+		while (1>0) {
 		int decis = Dialogos.pedirOpcion("Escoge la opción", "BIENVENIDO", respuestas);
+		File archivo = new File("academicos.dat");
 			switch (decis) {
 				case 0:
 					nombre = Dialogos.pedirCadena("Inserte su nombre");
@@ -35,47 +37,70 @@ public class PrincipalAcademico {
 					letra = Dialogos.pedirCadena("Introduzca el sillón que va a ocupar").toLowerCase().charAt(0);
 					
 					Academico acad = new Academico (nombre, aIngreso);
-					nuevoAcademico(mapa, acad, letra);
+					
+					nuevoAcademico(mapa, acad, letra, archivo);
 					break;
 				case 1: 
-					try {
-						mostrarDatos(mapa);
-						break;
-					}catch(FileNotFoundException e) {
-						e.printStackTrace();
-					} catch (IOException ex) {
-						ex.printStackTrace();
-					} break;
+					
+					ordenarLetra(archivo);
+					break; 
 				case 2: 
-					eliminarAcademico(mapa);
+					
+				try {
+					ordenarNombre(archivo);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					break;
+				case 3:
+					eliminarAcademico(mapa, archivo);
+					break;
+				case 4:
+					Dialogos.mensajeInfo("FIN DEL PROGRAMA");
+					System.exit(0);
 					break;
 				case -1 :
+					Dialogos.mensajeInfo("FIN DEL PROGRAMA");
 					System.exit(0);
-				
+					break;
 			}
-			
+		}
+	}
+	
+	
+	static void eliminarAcademico (HashMap<Character, Academico> mapa, File archivo) {
+		char letra  = Dialogos.pedirCadena("Introduzca el sillon del academico que quiere eliminar").toLowerCase().charAt(0);
+		mapa.remove(letra);
+		try {
+			ObjectOutputStream entrada = new ObjectOutputStream (new FileOutputStream (archivo));
+			entrada.writeObject(mapa);
+			entrada.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
-		
 	}
-	static void eliminarAcademico (HashMap<Character, Academico> mapa) {
-		char letra  = Dialogos.pedirCadena("Introduzca el sillon del academico que quiere eliminar").toLowerCase().charAt(0);
-		mapa.forEach((key, value)-> {
-			if (key==letra) {
-				mapa.remove(key);
-			}
-		});
-	}
+	
 
-	static boolean nuevoAcademico (HashMap<Character, Academico> mapa, Academico acad, char letra) {
+	static boolean nuevoAcademico (HashMap<Character, Academico> mapa, Academico acad, char letra, File archivo) {
 			
 		
 		if ((65<=letra && letra<=90 ) || (97<=letra && letra<=122)) {
 			mapa.put(letra, acad);
 		}
-
 		
 		if (mapa.containsValue(acad)) {
+			try {
+				ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(archivo));
+				salida.writeObject(mapa);
+				salida.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			return true;
 		} else {
 			return false;
@@ -84,51 +109,42 @@ public class PrincipalAcademico {
 	}
 	
 	
-	static void mostrarDatos(HashMap<Character, Academico> mapa) throws FileNotFoundException, IOException {
-
-		ArrayList<Academico> objetos = new ArrayList();
+	static void ordenarNombre(File archivo) throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream ordNom = new ObjectInputStream (new FileInputStream(archivo));
+		HashMap<Character, Academico> objetos = new HashMap();
+		objetos.putAll((HashMap<Character, Academico>) ordNom.readObject());
 		
-		
-		for (Academico a: mapa.values()) {
-			objetos.add(a);
+		ArrayList<Academico> objetosArr = new ArrayList();
+		objetosArr.addAll(objetos.values());
+		objetosArr.sort((obj1, obj2) -> (obj1).compareTo(obj2));
+		String lista = "";
+		for (Academico acad : objetosArr) {
+			for (Map.Entry<Character, Academico> fila : objetos.entrySet()) {
+				if (fila.getValue().compareTo(acad) == 0) {
+					lista+="Sillón: "+fila.getKey()+" "+fila.getValue().toString()+"\n"+("*".repeat(60)+"\n");
+				}
+			}
 		}
 		
-		objetos.sort((ob1, ob2) -> ob1.compareTo(ob2));
-		
-		System.out.println(objetos);
-		
-		System.out.println("Vamos a verlos ordenados por nombre");
-		// BUCLE RECORRE OBJETOS	//
-		for (Academico a : objetos) {
-			mapa.forEach((key, value) -> {
-				if (value.equals(a)) {
-					System.out.println("Key: "+key+" Value: "+value);
-					
-				}
-			});
-		} 
-		
-		
-		// Ordenados por letra //
-		System.out.println("Ordenados por letra del asiento");
-		System.out.println(mapa);
-		
-		// LES VOY A PASAR ORDENADOS POR LETRA, BASICAMENTE CREO QUE ES LO MÁS LÓGICO	//
+		Dialogos.mensajeInfo(lista, "ACADEMICOS ORDENADOS POR NOMBRE");
+	}
+
+	public static void ordenarLetra (File archivo) {
 		try {
-			File archivo = new File("academicos.dat");
-			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(archivo));
-			salida.writeObject(mapa);			
 			
-		} catch(FileNotFoundException e) {
+			ObjectInputStream entrada = new ObjectInputStream (new FileInputStream(archivo));
+			HashMap<Character, Academico> datos =  (HashMap<Character, Academico>) entrada.readObject();
+			String lista="";
+			for (Map.Entry<Character, Academico> fila: datos.entrySet()) {
+				lista+= "Sillón: "+fila.getKey()+" "+fila.getValue().toString()+"\n"+("*".repeat(60)+"\n");
+			}
+			Dialogos.mensajeInfo(lista, "ACADEMICOS ORDENADOS POR LETRA");
+		}catch (ClassNotFoundException cne){
+			cne.printStackTrace();
+		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		
-		
-		
-		
-		
 	}
-	
 }
