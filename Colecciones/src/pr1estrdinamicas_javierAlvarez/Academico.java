@@ -1,8 +1,9 @@
-package arrayLists;
+package pr1estrdinamicas_javierAlvarez;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class Academico implements Comparable{
+public class Academico implements Comparable<Academico>, Serializable{
 	private String nombre;
 	private int aIngreso;
 	
@@ -36,12 +37,12 @@ public class Academico implements Comparable{
 	}
 
 	@Override
-	public int compareTo(Object obj) {
-		if (this.nombre.compareTo(((Academico) obj).getNombre())<0) {
+	public int compareTo(Academico acad) {
+		if (this.getNombre().compareTo(acad.getNombre())<0) {
 			return -1;
-		} else if (this.nombre.compareTo(((Academico) obj).getNombre())==0) {
-			return 0;
-		} else  {
+		} else if (this.getNombre().compareTo(acad.getNombre())==0) {
+			return  0;
+		} else {
 			return 1;
 		}
 	}
@@ -53,5 +54,7 @@ public class Academico implements Comparable{
 			return false;
 		}
 	}
+
+	
 	
 }

@@ -1,4 +1,4 @@
-package arrayLists;
+package pr1estrdinamicas_javierAlvarez;
 import java.util.*;
 public class Ejer1 {
 	public static void main(String[] args) {
