@@ -54,6 +54,17 @@ public class Academico implements Comparable<Academico>, Serializable{
 			return false;
 		}
 	}
+	// METODO QUE SE PUEDE USAR PARA ORDENAR POR EDADES CON CODIGO LAMBDA	arr.sort((obj1,obj2)-> obj1.compareTo(obj2)//
+	public int comparaEdad(Academico acad) {
+		if (this.aIngreso<acad.getaIngreso()) {
+			return -1;
+		} else if (this.aIngreso==acad.getaIngreso()) {
+			return 0;
+		} else {
+			return 1;
+		}
+		
+	}
 
 	
 	
