@@ -11,12 +11,14 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import java.awt.GridLayout;
+import javax.swing.BoxLayout;
+import javax.swing.SwingConstants;
 
 public class Vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public JTextField num1Txt;
 	public JTextField num2Txt;
 	public JLabel resultadoLbl;
 	private  Controlador control;
@@ -54,13 +56,15 @@ public class Vista extends JFrame {
 		contentPane.add(panelBotones, BorderLayout.SOUTH);
 		JPanel panelPedir = new JPanel();
 		contentPane.add(panelPedir, BorderLayout.NORTH);
+		panelPedir.setLayout(new BorderLayout(0, 0));
 		
-		num1Txt = new JTextField();
-		panelPedir.add(num1Txt);
+		JTextField num1Txt = new JTextField();
+		num1Txt.setHorizontalAlignment(SwingConstants.CENTER);
+		panelPedir.add(num1Txt, BorderLayout.NORTH);
 		num1Txt.setColumns(10);
 		
 		num2Txt = new JTextField();
-		panelPedir.add(num2Txt);
+		panelPedir.add(num2Txt, BorderLayout.SOUTH);
 		num2Txt.setColumns(10);
 		
 		JPanel panelResultado = new JPanel();
@@ -70,12 +74,12 @@ public class Vista extends JFrame {
 		panelResultado.add(resultadoLbl);
 		
 		JButton sumarBtn = new JButton("SUMA");
-		sumarBtn.setActionCommand("sumar");
+		sumarBtn.setActionCommand("1");
 		panelBotones.add(sumarBtn);
 		
 		JButton restarBtn = new JButton("RESTA");
 		panelBotones.add(restarBtn);
-		restarBtn.setActionCommand("restar");
+		restarBtn.setActionCommand("2");
 		
 		restarBtn.addActionListener(control);
 		

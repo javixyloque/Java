@@ -16,15 +16,24 @@ public class Controlador implements ActionListener {
 		int num1 = Integer.parseInt(num1Str);
 		String num2Str = ventana.num2Txt.getText();
 		int num2 = Integer.parseInt(num2Str);
+			
 		
-		if (event.getActionCommand().equals("sumar")) {
-			
+		switch (Integer.parseInt(event.getActionCommand())) {
+		case 1:
 			result = Modelo.sumar(num1, num2);
-			
-		} else if (event.getActionCommand().equals("restar")) {
-
+			break;
+		case 2:
 			result = Modelo.restar(num1, num2);
+			break;
 		}
+//		if (event.getActionCommand().equals("sumar")) {
+			
+//			result = Modelo.sumar(num1, num2);
+			
+//		} else if (event.getActionCommand().equals("restar")) {
+//
+//			result = Modelo.restar(num1, num2);
+//		}
 		
 		
 		ventana.resultadoLbl.setText(String.valueOf(result));

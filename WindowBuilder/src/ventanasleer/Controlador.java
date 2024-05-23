@@ -13,7 +13,7 @@ public class Controlador implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String result = this.mod.aleatoria();
-		frame.resultadoLbl.setText(result);
+		frame.getResultadoLbl().setText(result);
 	}
 
 }
