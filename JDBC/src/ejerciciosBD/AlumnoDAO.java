@@ -1,18 +1,19 @@
 package ejerciciosBD;
 
-import java.sql.Connection;
+import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class AlumnoDAO {
-	private String usr = "c##alumnos";
-	private String pswd="alumnos";
-	private String bd="jdbc:oracle:thin:@10.1.2.247:1521:xe";
+	private static String usr = "c##alumnos";
+	private static String pswd="alumnos";
+	private static String bd="jdbc:oracle:thin:@192.168.1.167:1521:xe";
 	
 	
 	// METODO CREAR	//
-	public void create(Alumno alum) {
+	public static void create(Alumno alum) {
 		Connection conexion = conectar();
 		try {
 		String sql = "INSERT INTO ALUMNOS (num, nombre, media, curso) "
@@ -30,12 +31,31 @@ public class AlumnoDAO {
 		}	
 	}
 	
-	public 
+	public static void mostrar () {
+		Connection conexion=  conectar();
+		try {
+			String sql = "SELECT * FROM ALUMNOS";
+			Statement secuencia  = conexion.createStatement();
+			ResultSet rs = secuencia.executeQuery(sql);
+			while (rs.next()) {
+				System.out.println("Alumno:");
+				System.out.println("ID: "+rs.getInt("num"));
+				System.out.println("Nombre: "+rs.getString("nombre"));
+				System.out.println("Media: "+rs.getDouble("media"));
+				System.out.println("Curso: "+rs.getString("curso"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+
 	
 	
 	
 	// METODO PARA CONECTAR
-	public Connection conectar () {
+	public static Connection conectar () {
 		Connection conexion = null;
 		try {
 			conexion = DriverManager.getConnection(usr, pswd,bd);

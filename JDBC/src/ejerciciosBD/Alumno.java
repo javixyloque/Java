@@ -16,6 +16,14 @@ public class Alumno {
 		this.fnac = fnac;
 		this.media = media;
 	}
+	public Alumno(int num, String nombre, String curso, double media) {
+		super();
+		this.num = num;
+		this.nombre = nombre;
+		this.curso = curso;
+		this.fnac = null;
+		this.media = media;
+	}
 
 	
 	
