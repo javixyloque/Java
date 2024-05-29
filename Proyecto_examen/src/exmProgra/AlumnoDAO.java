@@ -6,11 +6,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class AlumnoDAO {
 	private static String usr = "c##alumnos";
 	private static String pswd="alumnos";
-	private static String bd="jdbc:oracle:thin:@212.230.135.2:1521:xe";
+	private static String bd="jdbc:oracle:thin:@192.168.1.167:1521:xe";
 	
 	
 	// METODO CREAR	//
@@ -25,13 +26,16 @@ public class AlumnoDAO {
 			secuencia.setString(2, alum.getNombre());
 			secuencia.setDouble(3, alum.getMedia());
 			secuencia.setString(4, alum.getCurso());
-			
+			secuencia.executeUpdate();
+			secuencia.close();
+			conexion.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
 	
+	 
 	public static void mostrar () {
 		Connection conexion=  conectar();
 		try {
@@ -45,6 +49,9 @@ public class AlumnoDAO {
 				System.out.println("Media: "+rs.getDouble("media"));
 				System.out.println("Curso: "+rs.getString("curso"));
 			}
+			rs.close();
+			secuencia.close();
+			conexion.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -52,14 +59,30 @@ public class AlumnoDAO {
 	}
 	
 
-	
+	public static ArrayList<Alumno> superaCorte () {
+		ArrayList<Alumno> arr = new ArrayList<Alumno>();
+		Alumno al = null;
+		Connection conexion = conectar();
+		String sql = "SELECT * FROM ALUMNOS WHERE";
+		try {
+			PreparedStatement secuencia = conexion.prepareStatement(sql);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+		
+	}
 	
 	
 	// METODO PARA CONECTAR
 	public static Connection conectar () {
 		Connection conexion = null;
 		try {
-			conexion = DriverManager.getConnection(usr, pswd,bd);
+			conexion = DriverManager.getConnection(bd, usr, pswd);
 			return conexion;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
