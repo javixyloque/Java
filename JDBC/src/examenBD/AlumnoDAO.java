@@ -1,4 +1,4 @@
-package ejerciciosBD;
+package examenBD;
 
 import java.sql.*;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package ejerciciosBD;
+package examenBD;
 
 public class Principal {
 	
