@@ -10,22 +10,13 @@ public class Articulo {
 	private double precio; 
 	
 	
-	// CONSTRUCTOR (SOLO VOY A USAR ESTE) //
-	public Articulo(String codArt, String nomArt, String codFab, String nomFab, double precio) {
-		this.codArt = codArt;
-		this.nomArt = nomArt;
-		this.codFab = codFab;
-		this.nomFab = nomFab;
-		this.precio = precio;
-	}
+	
 	
 
 	public Articulo(String codArt) {
 		this.read(codArt);
 	}
-	public Articulo () {
-		super();
-	}
+	
 
 
 	// METODO PARA LEER UN ARTICULO CON EL CODIGO DE ARTICULO //
@@ -44,10 +35,10 @@ public class Articulo {
             if (rs.next()) { 
             	
             	this.codArt=codArt;
-                this.nomArt = rs.getString("NomArt");                
+                this.nomArt = rs.getString("NomArt").toUpperCase();                
                 this.precio = rs.getDouble("Precio");
                 this.codFab = rs.getString("CodFab");
-                this.nomFab = rs.getString("NomFab");
+                this.nomFab = rs.getString("NomFab").toUpperCase();
                
                 rs.close();
                 sentencia.close();
@@ -62,7 +53,7 @@ public class Articulo {
 	
 
 	// HAGO EL METODO CONECTAR PERO VAMOS QUE NO ES NECESARIO AL TENER SOLO UNA CONSULTA
-	// SE PUEDE HACER EN EL MISMO METODO DE READ
+	// SE PUEDE HACER EN EL MISMO METODO DE READ PERO ASI ES MAS ORGANIZADO
 	
 	public static Connection connect() {
 		Connection conexion = null;
