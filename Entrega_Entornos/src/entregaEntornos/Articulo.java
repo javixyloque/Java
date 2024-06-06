@@ -19,7 +19,8 @@ public class Articulo {
 	
 
 
-	// METODO PARA LEER UN ARTICULO CON EL CODIGO DE ARTICULO //
+	// METODO PARA LEER UN ARTICULO CON EL FINAL 
+	// COMO EL CODIGO DE ARTICULO INSERTADO (ASI NO HAY QUE INSERTAR 8/9 CEROS) //
 	
 	public void read(String codArt) {
         String sql = "SELECT A.*, F.NOMFAB "
